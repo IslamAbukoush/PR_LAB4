@@ -15,6 +15,7 @@ ARTIFACTS_DIR = os.path.join(ROOT, "artifacts")
 
 LEADER_BASE = "http://localhost:8000"
 FOLLOWER_PORTS = [8001, 8002, 8003, 8004, 8005]
+FOLLOWER_SERVICES = ["follower1", "follower2", "follower3", "follower4", "follower5"]
 
 
 def run_compose(args: list[str], extra_env: dict[str, str] | None = None) -> None:
@@ -54,9 +55,13 @@ class RunResult:
 
 
 async def workload(quorum: int, min_delay_ms: int, max_delay_ms: int, replicate_timeout_ms: int) -> RunResult:
-    # Recreate leader with new quorum/delay settings (compose env-var substitution)
+    # Recreate leader *and followers*.
+    #
+    # Important: followers keep in-memory state across benchmark runs if we only
+    # restart the leader. That makes the dump equality checks (mismatch_*) measure
+    # cross-run residue rather than replication correctness.
     run_compose(
-        ["up", "-d", "--no-deps", "--force-recreate", "leader"],
+        ["up", "-d", "--no-deps", "--force-recreate", "leader", *FOLLOWER_SERVICES],
         extra_env={
             "WRITE_QUORUM": str(quorum),
             "MIN_DELAY_MS": str(min_delay_ms),
@@ -66,6 +71,8 @@ async def workload(quorum: int, min_delay_ms: int, max_delay_ms: int, replicate_
     )
 
     await wait_health(f"{LEADER_BASE}/health")
+    for port in FOLLOWER_PORTS:
+        await wait_health(f"http://localhost:{port}/health")
 
     sem = asyncio.Semaphore(10)  # 10 at a time
     latencies: list[float] = []

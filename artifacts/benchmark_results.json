@@ -1,31 +1,31 @@
 [
   {
     "quorum": 1,
-    "avg_latency_ms": 244.11175399999138,
-    "immediate_mismatching_followers": 4,
+    "avg_latency_ms": 181.57976000000417,
+    "immediate_mismatching_followers": 5,
     "settled_mismatching_followers": 0
   },
   {
     "quorum": 2,
-    "avg_latency_ms": 148.47590999999284,
-    "immediate_mismatching_followers": 0,
+    "avg_latency_ms": 326.74451399989266,
+    "immediate_mismatching_followers": 5,
     "settled_mismatching_followers": 0
   },
   {
     "quorum": 3,
-    "avg_latency_ms": 142.53727099996468,
-    "immediate_mismatching_followers": 0,
+    "avg_latency_ms": 553.5112159999517,
+    "immediate_mismatching_followers": 4,
     "settled_mismatching_followers": 0
   },
   {
     "quorum": 4,
-    "avg_latency_ms": 153.33729199998743,
-    "immediate_mismatching_followers": 0,
+    "avg_latency_ms": 665.4879400000937,
+    "immediate_mismatching_followers": 2,
     "settled_mismatching_followers": 0
   },
   {
     "quorum": 5,
-    "avg_latency_ms": 178.52644199995666,
+    "avg_latency_ms": 849.5904029999474,
     "immediate_mismatching_followers": 0,
     "settled_mismatching_followers": 0
   }
