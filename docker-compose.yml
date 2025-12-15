@@ -1,0 +1,71 @@
+services:
+  leader:
+    build: .
+    container_name: kv-leader
+    environment:
+      ROLE: leader
+      NODE_ID: leader
+      PORT: "8000"
+      FOLLOWER_URLS: "http://follower1:8000,http://follower2:8000,http://follower3:8000,http://follower4:8000,http://follower5:8000"
+      WRITE_QUORUM: "${WRITE_QUORUM:-3}"
+      MIN_DELAY_MS: "${MIN_DELAY_MS:-0}"
+      MAX_DELAY_MS: "${MAX_DELAY_MS:-1000}"
+      REPLICATE_TIMEOUT_MS: "${REPLICATE_TIMEOUT_MS:-3000}"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - follower1
+      - follower2
+      - follower3
+      - follower4
+      - follower5
+
+  follower1:
+    build: .
+    container_name: kv-follower1
+    environment:
+      ROLE: follower
+      NODE_ID: follower1
+      PORT: "8000"
+    ports:
+      - "8001:8000"
+
+  follower2:
+    build: .
+    container_name: kv-follower2
+    environment:
+      ROLE: follower
+      NODE_ID: follower2
+      PORT: "8000"
+    ports:
+      - "8002:8000"
+
+  follower3:
+    build: .
+    container_name: kv-follower3
+    environment:
+      ROLE: follower
+      NODE_ID: follower3
+      PORT: "8000"
+    ports:
+      - "8003:8000"
+
+  follower4:
+    build: .
+    container_name: kv-follower4
+    environment:
+      ROLE: follower
+      NODE_ID: follower4
+      PORT: "8000"
+    ports:
+      - "8004:8000"
+
+  follower5:
+    build: .
+    container_name: kv-follower5
+    environment:
+      ROLE: follower
+      NODE_ID: follower5
+      PORT: "8000"
+    ports:
+      - "8005:8000"

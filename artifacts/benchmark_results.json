@@ -1,0 +1,32 @@
+[
+  {
+    "quorum": 1,
+    "avg_latency_ms": 244.11175399999138,
+    "immediate_mismatching_followers": 4,
+    "settled_mismatching_followers": 0
+  },
+  {
+    "quorum": 2,
+    "avg_latency_ms": 148.47590999999284,
+    "immediate_mismatching_followers": 0,
+    "settled_mismatching_followers": 0
+  },
+  {
+    "quorum": 3,
+    "avg_latency_ms": 142.53727099996468,
+    "immediate_mismatching_followers": 0,
+    "settled_mismatching_followers": 0
+  },
+  {
+    "quorum": 4,
+    "avg_latency_ms": 153.33729199998743,
+    "immediate_mismatching_followers": 0,
+    "settled_mismatching_followers": 0
+  },
+  {
+    "quorum": 5,
+    "avg_latency_ms": 178.52644199995666,
+    "immediate_mismatching_followers": 0,
+    "settled_mismatching_followers": 0
+  }
+]
